@@ -95,6 +95,19 @@ The source is ready to upload to a new GitHub repository. Include the lockfile, 
 
 For a static host, configure all application routes to serve `index.html` (BrowserRouter history fallback). Subdirectory hosting also needs Vite `base`, router basename and asset-path configuration. The default build targets a domain root.
 
+## Development plan
+
+The items below represent the next layer of capability planned for Titan. Each is fully scoped in [engineering demo scenarios](docs/demo-scenarios.md).
+
+| # | Feature | What it enables |
+|---|---------|-----------------|
+| 1 | **Notification snooze** | Users can defer a notification for 1 h, 4 h or until tomorrow. Adds `snoozedUntil` to the `Notification` type and a `snoozeNotification()` mutation; the UI re-surfaces items automatically when the snooze window lapses. |
+| 2 | **Due-date policy enforcement** | Admins define org-level rules (e.g., every task must carry a due date). A new `validateTaskAgainstPolicy()` domain function gates task creation and surfaces in-dialog warnings. |
+| 3 | **Filter URL persistence** | Project search and status filters are encoded as query params (`/projects?search=planning&status=on-track`), making filtered views bookmarkable and shareable without changing any other persistence behaviour. |
+| 4 | **Cross-tab state sync** | A `storage` event listener propagates workspace and preference changes across browser tabs in real time; conflict resolution uses a newest-timestamp-wins strategy. |
+
+Work proceeds in priority order. All items require new unit tests and, where applicable, additional Playwright browser tests before being considered complete.
+
 ## Further reading
 
 - [Architecture and code map](docs/architecture.md)
